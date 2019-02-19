@@ -1,0 +1,6 @@
+{
+    "env": {},
+    "dependencies": {},
+    "componentsDefaultDirectory": "resources/assets/scripts",
+    "packageManager": "yarn"
+}
