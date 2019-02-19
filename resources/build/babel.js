@@ -4,7 +4,7 @@ module.exports = () => {
   mix.babelConfig({
     'plugins': [
       ['@wordpress/babel-plugin-makepot',
-        { 'output': './../lang/sensible.pot',
+        { 'output': './lang/sensible.pot',
       }],
     ],
   })

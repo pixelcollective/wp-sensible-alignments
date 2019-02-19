@@ -33,28 +33,57 @@ $gutenberg_dependencies = [
     'wp-blocks',
     'wp-editor',
     'wp-compose',
+    'wp-plugins',
 ];
 
 /**
- * Enqueue JS
+ * Enqueue Editor Hooks WP Plug
  */
 add_action(
-    'wp_enqueue_scripts',
-    function () use ($gutenberg_dependencies) {
-        wp_enqueue_script(
-            'wp-sensible-alignment-js',
-            plugins_url(__FILE__, '/dist/index.js'),
-            $gutenberg_dependencies,
-            null,
-            true
-        );
-
-        wp_register_script(
-            'wp-sensible-alignment-js',
-            plugins_url(__FILE__, '/dist/index.js'),
-            $gutenberg_dependencies,
-            null,
-            null
-        );
-    }
+    'admin_init',
+    __NAMESPACE__ .'\enqueueHooks',
 );
+
+/**
+ * Enqueue Editor Hooks Scripts
+ */
+function enqueueHooks($gutenberg_dependencies)
+{
+    wp_enqueue_script(
+        'wp-sensible-alignment-js',
+        plugins_url('/dist/index.js', __FILE__),
+        [
+            'wp-element',
+            'wp-i18n',
+            'wp-api-request',
+            'wp-data',
+            'wp-hooks',
+            'wp-components',
+            'wp-blocks',
+            'wp-editor',
+            'wp-compose',
+            'wp-plugins',
+        ],
+        null,
+        true
+    );
+
+    wp_register_script(
+        'wp-sensible-alignment-js',
+        plugins_url('/dist/index.js', __FILE__),
+        [
+            'wp-element',
+            'wp-i18n',
+            'wp-api-request',
+            'wp-data',
+            'wp-hooks',
+            'wp-components',
+            'wp-blocks',
+            'wp-editor',
+            'wp-compose',
+            'wp-plugins',
+        ],
+        null,
+        null
+    );
+}
